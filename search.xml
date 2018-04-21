@@ -23,6 +23,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hexo迁移]]></title>
+    <url>%2Fblog%2F2018%2F03%2F21%2Fhexo%E8%BF%81%E7%A7%BB%2F</url>
+    <content type="text"><![CDATA[操作步骤一、安装必要软件12安装 Git 客户端安装 node JS 二、在 github 官网添加新电脑产生的密钥三、源文件拷贝将原来电脑上个人博客目录下必要文件拷贝到新电脑上（比如D:/Blog目录下），注意无需拷贝全部，只拷如下几个文件：12345_config.ymlpackage.jsonscaffolds/source/themes/ 四、安装 hexo1在 cmd 下输入指令安装 hexo：npm install hexo-cli -g 五、进入 D:/Blog 目录（拷贝到新电脑的目录），安装相关模块1234npm installnpm install hexo-deployer-git --save // 文章部署到 git 的模块npm install hexo-generator-feed --save // 建立 RSS 订阅（选择安装）npm install hexo-generator-sitemap --save // 建立站点地图（选择安装） 六、部署发布文章123hexo clean // 清除缓存 网页正常情况下可以忽略此条命令hexo g // 生成静态网页hexo d // 开始部署 第二种方法具体的思路是：在生成的已经推到github上的hexo静态代码出建立一个分支，利用这个分支来管理自己hexo的源文件。如果能在刚刚配置hexo的时候就想好以后的迁移的问题就太好了，可以省掉很多麻烦。 具体的操作：克隆gitHub上面生成的静态文件到本地1git clone https://github.com/yourname/hexo-test.github.io.git 把克隆到本地的文件除了git的文件都删掉，找不到git的文件的话就到删了吧。不要用hexo init初始化。 将之前使用hexo写博客时候的整个目录（所有文件）搬过来。把该忽略的文件忽略了1touch .gitignore 创建一个叫hexo的分支1git checkout -b hexo 提交复制过来的文件到暂存区1git add --all 提交1git commit -m &quot;新建分支源文件&quot; 推送分支到github1git push --set-upstream origin hexo 到这里基本上就搞定了，以后再推就可以直接git push了，hexo的操作跟以前一样。 今后无论什么时候想要在其他电脑上面用hexo写博客，就直接把创建的分支克隆下来，npm install安装依赖之后就可以用了。 克隆分支的操作1git clone -b hexo https://github.com/yourname/hexo-test.github.io.git 因为上面创建的是一个名字叫hexo的分支，所以这里-b后面的是hexo，再把后面的gitHub的地址换成你自己的hexo博客的地址就可以了。 这样完了以后，每次写完博客发布之后不要忘了还要git push把源文件推到分支上。 原文链接：https://blog.csdn.net/lvonve/article/details/79587321原文链接：https://www.jianshu.com/p/beb8d611340a]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo]]></title>
     <url>%2Fblog%2F2018%2F03%2F12%2Fhexo%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
