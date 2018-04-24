@@ -89,9 +89,10 @@ links:
     url: http://bonsaiden.github.io/JavaScript-Garden/zh/
   - title: 撒网要见鱼
     url: http://www.dailichun.com/
+  - title: 阮一峰博客
+    url: http://www.ruanyifeng.com/blog/
   - title: 在线工具
     url: http://www.bejson.com/
-
 timeline:
   - num: 1
     word: 2016/06/12-Start
