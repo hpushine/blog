@@ -34,7 +34,7 @@
 <h3 id="四、IP负载均衡-LVS-NAT"><a href="#四、IP负载均衡-LVS-NAT" class="headerlink" title="四、IP负载均衡(LVS-NAT)"></a>四、IP负载均衡(LVS-NAT)</h3><p>NAT服务器:它工作在传输层，它可以修改发送来的IP数据包，将数据包的目标地址修改为实际服务器地址。</p>
 <p>数据的流向：</p>
 <p>客户端 –&gt; Load Balancer –&gt; RS –&gt; Load Balancer –&gt; 客户端</p>
-<p><img src="https://github.com/hpushine/blog/images/nat.webp" alt=""></p>
+<p><img src="http://jingchao.xyz/blog/images/nat.webp" alt=""></p>
 <p>从Linux2.4内核开始，其内置的Neftilter模块在内核中维护着一些数据包过滤表，这些表包含了用于控制数据包过滤的规则。可喜的是，Linux提供了iptables来对过滤表进行插入、修改和删除等操作。更加令人振奋的是，Linux2.6.x内核中内置了IPVS模块，它的工作性质类型于Netfilter模块，不过它更专注于实现IP负载均衡。</p>
 <p>IPVS的管理工具是ipvsadm，它为提供了基于命令行的配置界面，可以通过它快速实现负载均衡系统。这就是大名鼎鼎的LVS(Linux Virtual Server，Linux虚拟服务器)。</p>
 <p>1、打开调度器的数据包转发选项</p>
@@ -53,7 +53,7 @@
 <h3 id="五、直接路由-LVS-DR"><a href="#五、直接路由-LVS-DR" class="headerlink" title="五、直接路由(LVS-DR)"></a>五、直接路由(LVS-DR)</h3><p>NAT是工作在网络分层模型的传输层（第四层），而直接路由是工作在数据链路层（第二层），貌似更屌些。它通过修改数据包的目标MAC地址（没有修改目标IP），将数据包转发到实际服务器上，不同的是，实际服务器的响应数据包将直接发送给客户羰，而不经过调度器。</p>
 <p>数据的流向：</p>
 <p>客户端 –&gt; Load Balancer –&gt; RS –&gt; 客户端</p>
-<p><img src="https://github.com/hpushine/blog/images/dr.webp" alt=""></p>
+<p><img src="http://jingchao.xyz/blog/images/dr.webp" alt=""></p>
 <p>1、网络设置</p>
 <p>这里假设一台负载均衡调度器，两台实际服务器，购买三个外网ip，一台机一个，三台机的默认网关需要相同，最后再设置同样的ip别名，这里假设别名为10.10.120.193。这样一来，将通过10.10.120.193这个IP别名来访问调度器，你可以将站点的域名指向这个IP别名。</p>
 <p>2、将ip别名添加到回环接口lo上</p>
