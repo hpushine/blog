@@ -1,6 +1,6 @@
 ---
 title: Hexo
-date: 2018-03-12 09:20:13
+date: 2018-01-13 09:20:13
 ---
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
