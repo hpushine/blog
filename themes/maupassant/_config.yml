@@ -83,8 +83,10 @@ links:
     url: http://javascript.ruanyifeng.com/
   - title: ES6教程
     url: http://es6.ruanyifeng.com/
+  - title: Node教程
+    url: https://www.jianshu.com/p/37d16a63fbb9
   - title: Vue源码
-    url: http://answershuto.github.io/blog/
+    url: https://github.com/answershuto/learnVue
   - title: JS秘密花园
     url: http://bonsaiden.github.io/JavaScript-Garden/zh/
   - title: 撒网要见鱼
