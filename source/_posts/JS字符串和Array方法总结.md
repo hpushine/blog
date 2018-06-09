@@ -1,13 +1,14 @@
 ---
 title: JS字符串和Array方法
-date: 2018-05-30 15:15:13
-description: 字符串和Array的操作在js中非常频繁，也是非常重要的基础。这里对字符串和Array的一些常用操作做个整理，一来可以加深印象，二来也方便自己今后查阅复习！
+date: 2018-05-30 15:15:09
+description: 字符串和Array的操作在js开发中使用非常频繁，也是非常重要的基础。这里对字符串和Array的一些常用操作做个整理，一方面可以加深印象，二来也方便自己今后查阅复习！
 tags:
 category: Javascript
 ---
+
 ## String对象属性
 **length属性**
-length属性是字符串中的一个基本属性了，可以获取字符串长度，要注意的是js中的中文每个汉字也只代表一个字符。
+length属性是字符串中的一个基本属性了，可以获取字符串长度，要注意的是js的中文每个汉字也只代表一个字符。
 ```
 var str1 = 'abc';
 var str2 = '中国';
@@ -22,7 +23,7 @@ String.prototype.trim = function(){
 }```
 
 ```bash
-函数式封装    
+封装成函数   
 
 function trim(str,type) {  // [type]类型
     var type=type||"b";
