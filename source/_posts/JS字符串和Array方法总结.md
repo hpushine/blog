@@ -3,7 +3,8 @@ title: JS字符串和Array方法
 date: 2018-05-30 15:15:09
 description: 字符串和Array的操作在js开发中使用非常频繁，也是非常重要的基础。这里对字符串和Array的一些常用操作做个整理，一方面可以加深印象，二来也方便自己今后查阅复习！
 tags:
-category: Javascript
+category: 
+ - Javascript
 ---
 
 ## String对象属性
