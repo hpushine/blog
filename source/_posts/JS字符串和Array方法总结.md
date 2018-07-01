@@ -191,12 +191,93 @@ var str = 'JavaScript';
 console.log(str.toLowerCase());    //返回javascript
 console.log(str.toUpperCase());    //返回JAVASCRIPT
 ```
-## Array常用方法
+## Array常用方法（主要是遍历方法）
 
-**总结：**
-pop,push,reverse,shift,sort,splice,unshift 会改变原数组
-join,concat,indexOf,lastIndexOf,slice,toString 不会改变原数组
-map,filter,some,every,reduce,forEach这些迭代方法不会改变原数组
+**forEach**
+forEach() 方法指定数组的每项元素都执行一次传入的函数，返回值为undefined。
+语法：arr.forEach(fn, thisArg)
+fn 表示在数组每一项上执行的函数，接受三个参数：
+
+value 当前正在被处理的元素的值
+index 当前元素的数组索引
+array 数组本身
+
+thisArg 可选，用来当做fn函数内的this对象。
+forEach 将为数组中每一项执行一次fn函数，那些已删除，新增或者从未赋值的项将被跳过（但不包括值为 undefined 的项）。遍历过程中，fn会被传入上述三个参数。
+
+**every**
+every() 方法使用传入的函数测试所有元素，只要其中有一个函数返回值为 false，那么该方法的结果为 false；如果全部返回 true，那么该方法的结果才为 true。因此 every 方法存在如下规律：
+
+若需检测数组中存在元素大于100 （即 one > 100），那么我们需要在传入的函数中构造 "false" 返回值 （即返回 item <= 100），同时整个方法结果为 false 才表示数组存在元素满足条件；（简单理解为：若是单项判断，可用 one false ===> false）
+
+
+若需检测数组中是否所有元素都大于100 （即all > 100）那么我们需要在传入的函数中构造 "true" 返回值 （即返回 item > 100），同时整个方法结果为 true 才表示数组所有元素均满足条件。(简单理解为：若是全部判断，可用 all true ===> true）
+
+以下是鸭式辨型的写法：
+```
+var o = {0:10, 1:8, 2:25, length:3};
+var bool = Array.prototype.every.call(o,function(value, index, obj){
+  return value >= 8;
+},o);
+console.log(bool);
+```
+**some**
+some() 方法刚好同 every() 方法相反，some测试数组元素时，只要有一个函数返回值为 true，则该方法返回true，若全部返回 false，则该方法返回false。some方法存在如下规律：
+
+若需检测数组中存在元素大于100 (即 one > 100)，那么我们需要在传入的函数中构造 "true" 返回值 (即返回 item > 100)，同时整个方法结果为 true 才表示数组存在元素满足条件；（简单理解为：若是单项判断，可用 one true ===> true）
+
+
+若需检测数组中是否所有元素都大于100（即 all > 100），那么我们需要在传入的函数中构造 "false" 返回值 （即返回 item <= 100），同时整个方法结果为 false 才表示数组所有元素均满足条件。（简单理解为：若是全部判断，可用 all false ===> false）
+
+你注意到没有，some方法与includes方法有着异曲同工之妙，他们都是探测数组中是否拥有满足条件的元素，一旦找到，便返回true。多观察和总结这种微妙的关联关系，能够帮助我们深入理解它们的原理。
+
+**filter**
+filter() 方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。
+```
+语法：arr.filter(fn, thisArg)
+var array = [18, 9, 10, 35, 80];
+var array2 = array.filter(function(value, index, array){
+  return value > 20;
+});
+console.log(array2); // [35, 80]
+```
+
+**map**
+map() 方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。
+语法：arr.map(fn, thisArg)
+参数介绍同 forEach 方法的参数介绍。
+
+**reduce**
+reduce() 方法接收一个方法作为累加器，数组中的每个值(从左至右) 开始合并，最终为一个值。
+语法：arr.reduce(fn, initialValue)
+fn 表示在数组每一项上执行的函数，接受四个参数：
+
+previousValue 上一次调用回调返回的值，或者是提供的初始值
+value 数组中当前被处理元素的值
+index 当前元素在数组中的索引
+array 数组自身
+
+initialValue 指定第一次调用 fn 的第一个参数。
+当 fn 第一次执行时：
+
+如果 initialValue 在调用 reduce 时被提供，那么第一个 previousValue 将等于 initialValue，此时 item 等于数组中的第一个值；
+如果 initialValue 未被提供，那么 previousVaule 等于数组中的第一个值，item 等于数组中的第二个值。此时如果数组为空，那么将抛出 TypeError。
+如果数组仅有一个元素，并且没有提供 initialValue，或提供了 initialValue 但数组为空，那么fn不会被执行，数组的唯一值将被返回。
+
+### 总结
+**pop,push,reverse,shift,sort,splice,unshift,fill(ES6),copyWithin(ES6) 会改变原数组
+join,concat,indexOf,lastIndexOf,slice,toString,includes(ES7) 不会改变原数组
+map,filter,some,every,reduce,forEach
+和ES6新增的方法entries、find、findIndex、keys、values这些迭代方法不会改变原数组
+**
+
+数组的这些方法之间存在很多共性，比如：
+**所有插入元素的方法, 比如 push、unshift，一律返回数组新的长度；
+所有删除元素的方法,比如 pop、shift、splice 一律返回删除的元素,者返回删除的多个元素组成的数组；
+部分遍历方法,比如forEach、every、some、filter、map、find、findIndex，它们都包含function(value,index,array){} 和thisArg这样两个形参。
+**
+Array.prototype的所有方法均具有鸭式辨型这种神奇的特性。它们不止可以用来处理数组对象，还可以处理类数组对象。例如javascript中一个纯天然的类数组对象字符串（String），像join方法（不改变当前对象自身）就完全适用，可惜的是Array.prototype中很多方法均会去试图修改当前对象的length属性，比如说pop、push、shift, unshift方法，操作String对象时，由于String对象的长度本身不可更改，这将导致抛出TypeError错误，Array.prototype本身就是一个数组，并且它的长度为0。
+
 
 **几个注意点：**
 shift,pop会返回那个被删除的元素
