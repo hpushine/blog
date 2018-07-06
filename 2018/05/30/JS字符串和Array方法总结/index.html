@@ -51,11 +51,23 @@
 <p>若需检测数组中是否所有元素都大于100（即 all &gt; 100），那么我们需要在传入的函数中构造 “false” 返回值 （即返回 item &lt;= 100），同时整个方法结果为 false 才表示数组所有元素均满足条件。（简单理解为：若是全部判断，可用 all false ===&gt; false）</p>
 <p>你注意到没有，some方法与includes方法有着异曲同工之妙，他们都是探测数组中是否拥有满足条件的元素，一旦找到，便返回true。多观察和总结这种微妙的关联关系，能够帮助我们深入理解它们的原理。</p>
 <p><strong>filter</strong><br>filter() 方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">语法：arr.filter(fn, thisArg)</span><br><span class="line">var array = [18, 9, 10, 35, 80];</span><br><span class="line">var array2 = array.filter(function(value, index, array)&#123;</span><br><span class="line">  return value &gt; 20;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(array2); // [35, 80]</span><br></pre></td></tr></table></figure></p>
-<p><strong>map</strong><br>map() 方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。<br>语法：arr.map(fn, thisArg)<br>参数介绍同 forEach 方法的参数介绍。</p>
+<p><strong>map</strong><br>map()方法遍历数组，使用传入函数处理数组每个元素，并返回函数的返回值组成的新数组。<br>语法：arr.map(fn, thisArg)</p>
+<p>参数：<br>第一个参数：函数<br>    函数接收三个参数<br>    1、数组的项<br>    2、该项在数组中的位置<br>    3、数组对象本身<br>第二个参数：第一个参数的执行环境(this指向)</p>
+<p>返回值：<br>    forEach() 无返回值<br>    every() 对数组运行给定函数，如果该函数对每一项都返回true，则返回true<br>    some() 对数组运行给定函数，如果该函数对任意一项返回true，则返回true<br>    filter() 对数组执行给定函数，返回该函数返回true的项组成的数组<br>    map() 对数组执行给定函数，返回每次函数调用结果组成的数组</p>
 <p><strong>reduce</strong><br>reduce() 方法接收一个方法作为累加器，数组中的每个值(从左至右) 开始合并，最终为一个值。<br>语法：arr.reduce(fn, initialValue)<br>fn 表示在数组每一项上执行的函数，接受四个参数：</p>
 <p>previousValue 上一次调用回调返回的值，或者是提供的初始值<br>value 数组中当前被处理元素的值<br>index 当前元素在数组中的索引<br>array 数组自身</p>
 <p>initialValue 指定第一次调用 fn 的第一个参数。<br>当 fn 第一次执行时：</p>
 <p>如果 initialValue 在调用 reduce 时被提供，那么第一个 previousValue 将等于 initialValue，此时 item 等于数组中的第一个值；<br>如果 initialValue 未被提供，那么 previousVaule 等于数组中的第一个值，item 等于数组中的第二个值。此时如果数组为空，那么将抛出 TypeError。<br>如果数组仅有一个元素，并且没有提供 initialValue，或提供了 initialValue 但数组为空，那么fn不会被执行，数组的唯一值将被返回。</p>
+<p>【ES6】Array.of()</p>
+<p>用于创建数组，用法和 new Array() 一样。弥补 Array() 构造函数的不足（即参数不同，行为不同），Array.of() 的行为始终一致，将传入的值作为数组的项，产生数组</p>
+<p>参数：任意数量任意值<br>返回值：创建的数组</p>
+<p>【ES6】Array.from(obj, func, context)</p>
+<p>用于将 类数组对象(拥有length属性的对象) 和 可遍历对象(部署iterable接口的对象，包括 Set/Map) 转为真正的数组</p>
+<p>参数：<br>{Object} obj 要转为数组的对象<br>{Function} func 一个函数，功能类似于数组的map方法，对每一个对象属性执行该函数，并返回由该函数的返回值组成的数组<br>{Object} context 第二个函数参数的执行环境(this指向)<br>返回值：生成的数组</p>
+<p>【ES6】entries()，keys()和values()<br>描述：entries()，keys() 和 values() 都用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用 for…of 循环进行遍历，唯一的区别是 keys() 是对键名的遍历、values() 是对键值的遍历，entries() 是对键值对的遍历。</p>
+<p>【ES7】includes()<br>查找数组中是否包含给定值</p>
+<p>参数：<br>第一个参数：要查找的值<br>第二个参数：查找的起始位置，默认是0，负数表示倒数，查出范围会重置为0<br>返回值：true包含， false不包含includes</p>
+<p>相比于indexOf的优势有两点：1、更加语义化，不需要判断返回值是否为 -1。2、由于 indexOf 底层在判断是否相等时使用的是全等操作符 ===，这会导致使用 indexOf 查找 NaN 时查不到，而 includes 则不存在这样的问题</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>pop,push,reverse,shift,sort,splice,unshift,fill(ES6),copyWithin(ES6) 会改变原数组<br>join,concat,indexOf,lastIndexOf,slice,toString,includes(ES7) 不会改变原数组<br>map,filter,some,every,reduce,forEach<br>和ES6新增的方法entries、find、findIndex、keys、values这些迭代方法不会改变原数组
 </strong></p>
 <p>数组的这些方法之间存在很多共性，比如：<br><strong>所有插入元素的方法, 比如 push、unshift，一律返回数组新的长度；<br>所有删除元素的方法,比如 pop、shift、splice 一律返回删除的元素,者返回删除的多个元素组成的数组；<br>部分遍历方法,比如forEach、every、some、filter、map、find、findIndex，它们都包含function(value,index,array){} 和thisArg这样两个形参。
