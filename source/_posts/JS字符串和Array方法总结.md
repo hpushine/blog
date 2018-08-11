@@ -243,9 +243,23 @@ console.log(array2); // [35, 80]
 ```
 
 **map**
-map() 方法遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组。
+map()方法遍历数组，使用传入函数处理数组每个元素，并返回函数的返回值组成的新数组。
 语法：arr.map(fn, thisArg)
-参数介绍同 forEach 方法的参数介绍。
+
+参数：
+第一个参数：函数
+    函数接收三个参数
+    1、数组的项
+    2、该项在数组中的位置
+    3、数组对象本身
+第二个参数：第一个参数的执行环境(this指向)
+
+返回值：
+    forEach() 无返回值
+    every() 对数组运行给定函数，如果该函数对每一项都返回true，则返回true
+    some() 对数组运行给定函数，如果该函数对任意一项返回true，则返回true
+    filter() 对数组执行给定函数，返回该函数返回true的项组成的数组
+    map() 对数组执行给定函数，返回每次函数调用结果组成的数组
 
 **reduce**
 reduce() 方法接收一个方法作为累加器，数组中的每个值(从左至右) 开始合并，最终为一个值。
@@ -263,6 +277,36 @@ initialValue 指定第一次调用 fn 的第一个参数。
 如果 initialValue 在调用 reduce 时被提供，那么第一个 previousValue 将等于 initialValue，此时 item 等于数组中的第一个值；
 如果 initialValue 未被提供，那么 previousVaule 等于数组中的第一个值，item 等于数组中的第二个值。此时如果数组为空，那么将抛出 TypeError。
 如果数组仅有一个元素，并且没有提供 initialValue，或提供了 initialValue 但数组为空，那么fn不会被执行，数组的唯一值将被返回。
+
+【ES6】Array.of()
+
+用于创建数组，用法和 new Array() 一样。弥补 Array() 构造函数的不足（即参数不同，行为不同），Array.of() 的行为始终一致，将传入的值作为数组的项，产生数组
+
+参数：任意数量任意值
+返回值：创建的数组
+
+【ES6】Array.from(obj, func, context)
+
+用于将 类数组对象(拥有length属性的对象) 和 可遍历对象(部署iterable接口的对象，包括 Set/Map) 转为真正的数组
+
+参数：
+{Object} obj 要转为数组的对象
+{Function} func 一个函数，功能类似于数组的map方法，对每一个对象属性执行该函数，并返回由该函数的返回值组成的数组
+{Object} context 第二个函数参数的执行环境(this指向)
+返回值：生成的数组
+
+【ES6】entries()，keys()和values()
+描述：entries()，keys() 和 values() 都用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用 for...of 循环进行遍历，唯一的区别是 keys() 是对键名的遍历、values() 是对键值的遍历，entries() 是对键值对的遍历。
+
+【ES7】includes()
+查找数组中是否包含给定值
+
+参数：
+第一个参数：要查找的值
+第二个参数：查找的起始位置，默认是0，负数表示倒数，查出范围会重置为0
+返回值：true包含， false不包含includes
+
+相比于indexOf的优势有两点：1、更加语义化，不需要判断返回值是否为 -1。2、由于 indexOf 底层在判断是否相等时使用的是全等操作符 ===，这会导致使用 indexOf 查找 NaN 时查不到，而 includes 则不存在这样的问题
 
 ### 总结
 **pop,push,reverse,shift,sort,splice,unshift,fill(ES6),copyWithin(ES6) 会改变原数组
