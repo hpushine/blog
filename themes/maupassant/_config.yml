@@ -79,6 +79,8 @@ widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts
   - links
 
 links:
+  - title: JS秘密花园
+    url: http://jingchao.xyz/jsgarden/zh/
   - title: JS教程
     url: http://javascript.ruanyifeng.com/
   - title: ES6教程
@@ -86,9 +88,7 @@ links:
   - title: Node教程
     url: https://www.jianshu.com/p/37d16a63fbb9
   - title: Vue源码
-    url: https://github.com/answershuto/learnVue
-  - title: JS秘密花园
-    url: http://bonsaiden.github.io/JavaScript-Garden/zh/
+    url: https://github.com/answershuto/learnVue  
   - title: 撒网要见鱼
     url: http://www.dailichun.com/
   - title: 阮一峰博客
